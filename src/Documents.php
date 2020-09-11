@@ -83,6 +83,39 @@ class Documents
     }
 
     /**
+     * Create Document with link
+     *
+     * @param array $attributes
+     * @return bool|false|string
+     */
+    public function createWithLink(array $attributes)
+    {
+        $variables = [
+            'document' => [
+                'name' => $attributes['document']['name'],
+            ],
+            'signers' => [
+                [
+                    'name' => $attributes['document']['name'],
+                    'action' => 'SIGN',
+                    'positions' => [],
+                ],
+            ],
+            'file' => null,
+        ];
+
+        foreach ($attributes['signers']['positions'] as $k => $position) {
+            array_push($variables['signers'][0]['positions'], $position);
+        }
+
+        $graphMutation = $this->QUERY->setFile(__FUNCTION__)->query();
+        $graphMutation = str_replace('$variables', json_encode($variables), $graphMutation);
+        $graphMutation = str_replace('$sandbox', getenv('AUTENTIQUE_DEV_MODE') ? 'true' : 'false', $graphMutation);
+
+        return Api::request($this->token, $graphMutation, 'form', $attributes['file']);
+    }
+
+    /**
      * Sign document by id
      *
      * @param string $documentId
