@@ -51,7 +51,7 @@ class Documents
 
     /**
      * Create Document
-     *
+     *jomas
      * @param array $attributes
      * @return bool|false|string
      */
@@ -63,7 +63,7 @@ class Documents
             ],
             'signers' => [
                 [
-                    'email' => $attributes['signers']['email'],
+                    'name' => $attributes['document']['name'],
                     'action' => 'SIGN',
                     'positions' => [],
                 ],
