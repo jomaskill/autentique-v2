@@ -77,7 +77,7 @@ class Documents
 
         $graphMutation = $this->QUERY->setFile(__FUNCTION__)->query();
         $graphMutation = str_replace('$variables', json_encode($variables), $graphMutation);
-        $graphMutation = str_replace('$sandbox', getenv('AUTENTIQUE_DEV_MODE') ? 'true' : 'false', $graphMutation);
+        $graphMutation = str_replace('$sandbox', config('AUTENTIQUE_DEV_MODE') ? 'true' : 'false', $graphMutation);
 
         return Api::request($this->token, $graphMutation, 'form', $attributes['file']);
     }
@@ -110,7 +110,7 @@ class Documents
 
         $graphMutation = $this->QUERY->setFile(__FUNCTION__)->query();
         $graphMutation = str_replace('$variables', json_encode($variables), $graphMutation);
-        $graphMutation = str_replace('$sandbox', getenv('AUTENTIQUE_DEV_MODE') ? 'true' : 'false', $graphMutation);
+        $graphMutation = str_replace('$sandbox', config('AUTENTIQUE_DEV_MODE') ? 'true' : 'false', $graphMutation);
 
         return Api::request($this->token, $graphMutation, 'form', $attributes['file']);
     }
