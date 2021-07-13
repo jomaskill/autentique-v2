@@ -32,7 +32,7 @@ class Api
         $curl = curl_init();
 
         curl_setopt_array(/** @scrutinizer ignore-type */ $curl, [
-            CURLOPT_URL => config('AUTENTIQUE_URL'),
+            CURLOPT_URL => config('Autentique.AUTENTIQUE_URL'),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
